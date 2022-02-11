@@ -1,0 +1,68 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "storagePrecision" : "Float32",
+    "outputSchema" : [
+      {
+        "height" : "1920",
+        "colorspace" : "RGB",
+        "isOptional" : "0",
+        "width" : "1920",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 1920 × 1920)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "",
+        "name" : "activation_out"
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "specificationVersion" : 4,
+    "computePrecision" : "Float16",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.15",
+      "tvOS" : "13.0",
+      "watchOS" : "6.0",
+      "iOS" : "13.0",
+      "macCatalyst" : "13.0"
+    },
+    "neuralNetworkLayerTypeHistogram" : {
+      "Concat" : 276,
+      "ActivationLeakyReLU" : 279,
+      "ActivationLinear" : 1,
+      "Multiply" : 23,
+      "ReshapeStatic" : 2,
+      "Add" : 93,
+      "Transpose" : 1,
+      "Convolution" : 351,
+      "Squeeze" : 1,
+      "UpsampleNearestNeighbor" : 2
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "userDefinedMetadata" : {
+      "com.github.apple.coremltools.version" : "5.1.0",
+      "com.github.apple.coremltools.source" : "torch==1.10.0+cu111"
+    },
+    "generatedClassName" : "realesrgan960x2",
+    "inputSchema" : [
+      {
+        "height" : "960",
+        "colorspace" : "RGB",
+        "isOptional" : "0",
+        "width" : "960",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 960 × 960)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "",
+        "name" : "x"
+      }
+    ],
+    "method" : "predict"
+  }
+]
