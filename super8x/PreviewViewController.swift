@@ -19,12 +19,14 @@ class PreviewViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         model.delegate = self
         model.loadImages()
         setupView()
+        indicator.isHidden = true
     }
     
     func setupView() {
@@ -63,6 +65,8 @@ class PreviewViewController: UIViewController, UIScrollViewDelegate{
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        indicator.isHidden = false
+        indicator.startAnimating()
         model.saveImage()
     }
     
@@ -86,6 +90,8 @@ class PreviewViewController: UIViewController, UIScrollViewDelegate{
 
 extension PreviewViewController: PreviewModelDelegate {
     func imageSaved() {
+        indicator.stopAnimating()
+        indicator.isHidden = true
         self.presentAlert("Saved in PhotoLibraty")
     }
 }

@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var stopStackView: UIStackView!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     enum ViewMode {
         case noImage
@@ -48,6 +50,8 @@ class ViewController: UIViewController {
     
     var selectedIndexPath:IndexPath?
     
+    let haptics = Haptics()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -63,24 +67,29 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
+        haptics.playHapticsFile("Tap")
         add()
     }
     
     @IBAction func runButtonTapped(_ sender: UIButton) {
+        haptics.playHapticsFile("Tap")
         next()
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        haptics.playHapticsFile("Tap")
         save()
     }
     
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
+        haptics.playHapticsFile("Tap")
         share()
     }
     
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
+        haptics.playHapticsFile("Tap")
         reset()
     }
     
@@ -89,6 +98,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func stopButtonTapped(_ sender: UIButton) {
+        haptics.playHapticsFile("Tap")
         model.stopProcess()
     }
     
@@ -116,7 +126,7 @@ class ViewController: UIViewController {
     }
     
     @objc func reset(){
-        collectionView.performBatchUpdates { [weak self] in
+        collectionView.performBatchUpdates { 
             var indexPaths:[IndexPath] = []
             for index in model.srImages.indices {
                 let index = IndexPath(item: index, section: 0)
@@ -124,28 +134,13 @@ class ViewController: UIViewController {
             }
             model.removeAllSrImages()
             collectionView.deleteItems(at: indexPaths)
-        } completion: { [weak self] _ in
+        } completion: { _ in
         }
     }
     
     @objc func back(){
         collectionView.performBatchUpdates {
             model.removeALLSrImageURLAndThumbnails()
-        }
-    }
-    
-    @objc func onLongPressAction(sender: UILongPressGestureRecognizer) {
-        let point: CGPoint = sender.location(in: collectionView)
-        let indexPath = self.collectionView.indexPathForItem(at: point)
-        
-        if let indexPath = indexPath {
-            switch sender.state {
-            case .began:
-                let cell = collectionView.cellForItem(at: indexPath)!
-                selectedIndexPath = indexPath
-            default:
-                break
-            }
         }
     }
     
@@ -157,10 +152,6 @@ class ViewController: UIViewController {
             
         }
 
-    }
-    
-    func longTapSelectedAnimation(view:UIView) {
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -376,10 +367,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func setupView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressAction(sender:)))
-        longPressRecognizer.allowableMovement = 10
-        longPressRecognizer.minimumPressDuration = 0.5
-        collectionView.addGestureRecognizer(longPressRecognizer)
         collectionView.alwaysBounceVertical = true
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
@@ -474,7 +461,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        haptics.playHapticsFile("Tap")
+        titleLabel.isHidden = true
+        descriptionLabel.isHidden = true
         picker.dismiss(animated: true)
+        guard !results.isEmpty else { return }
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         var selectedImages:[NSItemProvider] = []

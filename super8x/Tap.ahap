@@ -1,0 +1,48 @@
+{
+    "Version": 1.0,
+    "Metadata":
+        {
+            "Project" : "super8x",
+            "Created" : "1 June 2021",
+            "Description" : "Effect for the small ball colliding with a wall."
+        },
+    "Pattern":
+    [
+        {
+            "Event":
+            {
+                "Time": 0.0,
+                "EventType": "HapticTransient",
+                "EventParameters":
+                [
+                    { "ParameterID": "HapticIntensity", "ParameterValue": 0.5 },
+                    { "ParameterID": "HapticSharpness", "ParameterValue": 1 }
+                ]
+            }
+        },
+        {
+            "Event":
+            {
+                "Time": 0.1,
+                "EventType": "HapticTransient",
+                "EventParameters":
+                [
+                    { "ParameterID": "HapticIntensity", "ParameterValue": 0.3 },
+                    { "ParameterID": "HapticSharpness", "ParameterValue": 1 }
+                ]
+            }
+        },
+        {
+            "Event":
+            {
+                "Time":0.0,
+                "EventType":"AudioCustom",
+                "EventWaveformPath":"Tap.wav",
+                "EventParameters":
+                [
+                    {"ParameterID":"AudioVolume","ParameterValue":1.0}
+                ]
+            }
+        }
+    ]
+}

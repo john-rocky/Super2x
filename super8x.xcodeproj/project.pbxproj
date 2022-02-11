@@ -22,6 +22,9 @@
 		73DB1B3627A4B1300045DF26 /* super8xUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB1B3527A4B1300045DF26 /* super8xUITestsLaunchTests.swift */; };
 		73DB1BBA27A5B54F0045DF26 /* SRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB1BB927A5B54F0045DF26 /* SRImage.swift */; };
 		73DB1BBC27A5BD480045DF26 /* SRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB1BBB27A5BD480045DF26 /* SRModel.swift */; };
+		73E7EE5627B70835005BC089 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E7EE5527B70834005BC089 /* Haptics.swift */; };
+		73E7EE5827B70A85005BC089 /* Tap.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 73E7EE5727B70A85005BC089 /* Tap.ahap */; };
+		73E7EE5C27B71153005BC089 /* Tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 73E7EE5B27B71152005BC089 /* Tap.wav */; };
 		73F85E8327AF121300A45813 /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F85E8227AF121300A45813 /* PreviewModel.swift */; };
 		73F85E8527B1B9E900A45813 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F85E8427B1B9E900A45813 /* ViewUtils.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +66,9 @@
 		73DB1B3527A4B1300045DF26 /* super8xUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = super8xUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		73DB1BB927A5B54F0045DF26 /* SRImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRImage.swift; sourceTree = "<group>"; };
 		73DB1BBB27A5BD480045DF26 /* SRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRModel.swift; sourceTree = "<group>"; };
+		73E7EE5527B70834005BC089 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		73E7EE5727B70A85005BC089 /* Tap.ahap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tap.ahap; sourceTree = "<group>"; };
+		73E7EE5B27B71152005BC089 /* Tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Tap.wav; sourceTree = "<group>"; };
 		73F85E8227AF121300A45813 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
 		73F85E8427B1B9E900A45813 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +126,9 @@
 				73DB1B1627A4B1220045DF26 /* ViewController.swift */,
 				7354065227AB0F35004CCACC /* PreviewViewController.swift */,
 				73F85E8427B1B9E900A45813 /* ViewUtils.swift */,
+				73E7EE5527B70834005BC089 /* Haptics.swift */,
+				73E7EE5727B70A85005BC089 /* Tap.ahap */,
+				73E7EE5B27B71152005BC089 /* Tap.wav */,
 				73DB1BBB27A5BD480045DF26 /* SRModel.swift */,
 				73DB1BB927A5B54F0045DF26 /* SRImage.swift */,
 				73F85E8227AF121300A45813 /* PreviewModel.swift */,
@@ -257,6 +266,8 @@
 			files = (
 				735406C927AC7D0E004CCACC /* realesrgan960x2.mlmodelc in Resources */,
 				73DB1B1F27A4B12F0045DF26 /* LaunchScreen.storyboard in Resources */,
+				73E7EE5C27B71153005BC089 /* Tap.wav in Resources */,
+				73E7EE5827B70A85005BC089 /* Tap.ahap in Resources */,
 				73DB1B1C27A4B12F0045DF26 /* Assets.xcassets in Resources */,
 				73DB1B1A27A4B1220045DF26 /* Main.storyboard in Resources */,
 			);
@@ -285,6 +296,7 @@
 			files = (
 				73DB1BBC27A5BD480045DF26 /* SRModel.swift in Sources */,
 				73F85E8527B1B9E900A45813 /* ViewUtils.swift in Sources */,
+				73E7EE5627B70835005BC089 /* Haptics.swift in Sources */,
 				73DB1BBA27A5B54F0045DF26 /* SRImage.swift in Sources */,
 				735406CA27AC7D0E004CCACC /* realesrgan960x2.swift in Sources */,
 				73F85E8327AF121300A45813 /* PreviewModel.swift in Sources */,
@@ -474,6 +486,7 @@
 				DEVELOPMENT_TEAM = MFN25KNUGJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = super8x/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = super2x;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -505,6 +518,7 @@
 				DEVELOPMENT_TEAM = MFN25KNUGJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = super8x/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = super2x;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
