@@ -57,6 +57,24 @@ class ViewController: UIViewController {
         setupView()
         viewWidth = view.bounds.width - 4
         model.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(removeFiles), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    @objc func removeFiles() {
+        collectionView.performBatchUpdates {
+//            var indexPaths:[IndexPath] = []
+//            for index in model.srImages.indices {
+//                indexPaths.append(IndexPath(item: index, section: 0))
+//            }
+//            collectionView.deleteItems(at: indexPaths)
+            collectionView.reloadData()
+            model.removeALLSrImageURLAndThumbnails()
+                
+        } completion: { _ in
+            
+        }
+        updateMenu()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,11 +82,6 @@ class ViewController: UIViewController {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         updateMenu()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        model.deleteLocalSRImageFiles()
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {

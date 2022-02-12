@@ -411,12 +411,14 @@ class SRModel: NSObject {
     }
     
     func deleteSRImage(index:Int) {
+        deleteSRImageURL(index:index)
         srImages.remove(at: index)
         checkStartProcessingIndex()
         delegate?.srImageDeleted()
     }
     
     func removeAllSrImages(){
+        deleteAllLocalSRImageFiles()
         srImages.removeAll()
         checkStartProcessingIndex()
         delegate?.srImageDeleted()
@@ -424,7 +426,7 @@ class SRModel: NSObject {
     
     func removeALLSrImageURLAndThumbnails() {
         for index in srImages.indices {
-            srImages[index].srImageURL = nil
+            deleteSRImageURL(index:index)
             srImages[index].srThumbnailImage = nil
             srImages[index].srPointSize = nil
         }
@@ -432,14 +434,20 @@ class SRModel: NSObject {
         delegate?.srImageURLRemoved()
     }
     
-    func deleteLocalSRImageFiles(){
-        for srImage in srImages {
-            if let srURL = srImage.srImageURL {
-                do {
-                    try FileManager.default.removeItem(at: srURL)
-                } catch let error {
-                    print(error)
-                }
+    func deleteAllLocalSRImageFiles(){
+        for index in srImages.indices {
+            deleteSRImageURL(index:index)
+        }
+    }
+    
+    func deleteSRImageURL(index:Int) {
+        if let srURL = srImages[index].srImageURL {
+            do {
+                try FileManager.default.removeItem(at: srURL)
+                print(srURL)
+                srImages[index].srImageURL = nil
+            } catch let error {
+                print(error)
             }
         }
     }
