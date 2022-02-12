@@ -12,6 +12,9 @@ class PreviewViewController: UIViewController, UIScrollViewDelegate{
     var model: PreviewModel!
     var scrollView = UIScrollView()
     var imageView = UIImageView()
+    
+    var haptics:Haptics!
+    
     @IBOutlet weak var menuStack: UIStackView!
     
     @IBOutlet weak var headerView: UIView!

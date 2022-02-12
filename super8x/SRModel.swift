@@ -369,6 +369,7 @@ class SRModel: NSObject {
             self.totalTileCount = 0
             self.srTile = []
             self.dimmentionalSRTile = []
+            self.date = nil
             self.delegate?.processingEnded()
         }
     }

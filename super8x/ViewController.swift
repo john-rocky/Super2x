@@ -66,6 +66,11 @@ class ViewController: UIViewController {
         updateMenu()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        model.deleteLocalSRImageFiles()
+    }
+    
     @IBAction func addButtonTapped(_ sender: UIButton) {
         haptics.playHapticsFile("Tap")
         add()
@@ -213,14 +218,16 @@ extension ViewController: SRModelDelegate {
                    let completeLabel = cell.contentView.viewWithTag(6) as? UILabel,
                    let completeImageView = cell.contentView.viewWithTag(7) as? UIImageView,
                    let pointSizeLabel = cell.contentView.viewWithTag(3) as? UILabel,
-                let indicator = cell.contentView.viewWithTag(9) as? UIActivityIndicatorView
+                   let indicator = cell.contentView.viewWithTag(9) as? UIActivityIndicatorView
                 {
-                    imageView.image = safeSelf.model.srImages[index].thumbnailImage
-                    completeLabel.text = " "
-                    completeImageView.isHidden = true
-                    let width = safeSelf.model.srImages[index].pointSize.width
-                    let height = safeSelf.model.srImages[index].pointSize.height
-                    pointSizeLabel.text = "\(Int(width))x\(Int(height))"
+                    if safeSelf.model.srImages[index].srImageURL == nil {
+                        imageView.image = safeSelf.model.srImages[index].thumbnailImage
+                        completeLabel.text = " "
+                        completeImageView.isHidden = true
+                        let width = safeSelf.model.srImages[index].pointSize.width
+                        let height = safeSelf.model.srImages[index].pointSize.height
+                        pointSizeLabel.text = "\(Int(width))x\(Int(height))"
+                    }
                     indicator.stopAnimating()
                     indicator.isHidden = true
                 }
@@ -415,6 +422,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let indicator = cell.contentView.viewWithTag(9) as! UIActivityIndicatorView
         indicator.stopAnimating()
         indicator.isHidden = true
+        let completeLabel = cell.contentView.viewWithTag(6) as! UILabel
+        let completeImageView = cell.contentView.viewWithTag(7) as! UIImageView
+        completeLabel.text = " "
+        completeImageView.isHidden = true
         return cell
     }
     
@@ -436,7 +447,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func deleteAction(_ indexPath: IndexPath) -> UIAction {
-        return UIAction(title: NSLocalizedString("DeleteTitle", comment: ""),
+        return UIAction(title: NSLocalizedString("Delete", comment: ""),
                         image: UIImage(systemName: "trash"),
                         attributes: .destructive) { action in
             self.deleteCell(indexPath:indexPath)

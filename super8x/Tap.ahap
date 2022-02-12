@@ -1,11 +1,4 @@
 {
-    "Version": 1.0,
-    "Metadata":
-        {
-            "Project" : "super8x",
-            "Created" : "1 June 2021",
-            "Description" : "Effect for the small ball colliding with a wall."
-        },
     "Pattern":
     [
         {
