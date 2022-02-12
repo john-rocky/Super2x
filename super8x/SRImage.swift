@@ -12,7 +12,7 @@ struct SRImage {
     let imageProvider: NSItemProvider
     let thumbnailImage: UIImage
     let pointSize: CGSize
-    let megaByteSize: Int
+    let megaByteSize: Double
     var srImageURL: URL?
     var srThumbnailImage: UIImage?
     var srPointSize: CGSize?

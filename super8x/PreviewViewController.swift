@@ -35,7 +35,7 @@ class PreviewViewController: UIViewController, UIScrollViewDelegate{
         scrollView.addSubview(imageView)
         imageView.frame = scrollView.bounds
         scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 4.0
+        scrollView.maximumZoomScale = 5.0
         scrollView.delegate = self
         imageView.contentMode = .scaleAspectFit
         imageView.image = model.srUIImage

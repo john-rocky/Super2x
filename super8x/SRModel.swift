@@ -79,7 +79,8 @@ class SRModel: NSObject {
                               let thumbnailImage = uiImage.thumbnail(width: viewWidth) else { return }
                         
                         let pointSize = uiImage.size
-                        let megaByteSize = Int(data.count/1000000)
+                        print(data.count)
+                        let megaByteSize = round(Double(data.count/100000))/10
                         let srImage = SRImage(imageProvider: itemProvider, thumbnailImage: thumbnailImage, pointSize: pointSize, megaByteSize: megaByteSize)
                         self.srImages.append(srImage)
                         self.delegate?.srImagesUpdated()
@@ -428,6 +429,18 @@ class SRModel: NSObject {
         }
         checkStartProcessingIndex()
         delegate?.srImageURLRemoved()
+    }
+    
+    func deleteLocalSRImageFiles(){
+        for srImage in srImages {
+            if let srURL = srImage.srImageURL {
+                do {
+                    try FileManager.default.removeItem(at: srURL)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
     }
 }
 
