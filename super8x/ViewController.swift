@@ -453,6 +453,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
+        guard !model.isProcessing else { return nil }
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             let deleteAction = self.deleteAction(indexPath)
             return UIMenu(title: "", children: [deleteAction])
@@ -463,6 +464,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         return UIAction(title: NSLocalizedString("Delete", comment: ""),
                         image: UIImage(systemName: "trash"),
                         attributes: .destructive) { action in
+            
             self.deleteCell(indexPath:indexPath)
             self.upDateCellNumber()
         }
